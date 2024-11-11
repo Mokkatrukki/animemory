@@ -1,4 +1,5 @@
 import { useAnimeStore } from '../store/animeStore'
+import HistoryViewer from '../components/HistoryViewer'
 
 const SidePanel = () => {
   const { 
@@ -81,6 +82,17 @@ const SidePanel = () => {
               Found {history.length} episodes in history
             </p>
           </div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="p-4">
+        {history.length === 0 ? (
+          <p className="text-center text-gray-400">
+            No history data available. Visit Crunchyroll history page to collect data.
+          </p>
+        ) : (
+          <HistoryViewer />
         )}
       </div>
 
