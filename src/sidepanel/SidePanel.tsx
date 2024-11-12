@@ -1,6 +1,7 @@
 import { useAnimeStore } from '../store/animeStore'
 import HistoryViewer from '../components/HistoryViewer'
 
+
 const SidePanel = () => {
   const { 
     history, 
@@ -9,8 +10,10 @@ const SidePanel = () => {
     lastUpdated,
     startScanning,
     stopScanning,
-    resetHistory 
+    resetHistory,
+    loadTestData
   } = useAnimeStore()
+
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
@@ -35,6 +38,12 @@ const SidePanel = () => {
             disabled={!isScanning}
           >
             Stop Scanning
+          </button>
+          <button
+            onClick={loadTestData}
+            className="mt-2 w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-sm"
+          >
+            Load Test Data
           </button>
         </div>
 
@@ -78,21 +87,8 @@ const SidePanel = () => {
         ) : (
           <div className="space-y-4">
             {/* We'll add history display component here later */}
-            <p className="text-center text-gray-400">
-              Found {history.length} episodes in history
-            </p>
+            <HistoryViewer />
           </div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-4">
-        {history.length === 0 ? (
-          <p className="text-center text-gray-400">
-            No history data available. Visit Crunchyroll history page to collect data.
-          </p>
-        ) : (
-          <HistoryViewer />
         )}
       </div>
 
